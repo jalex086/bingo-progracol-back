@@ -56,7 +56,8 @@ public class BingoParamBoardServiceImpl implements IBingoParamBoardService {
 		Arrays.sort(arrayOrdenado, Ordering.natural().nullsLast());
 
 		return bingoParamBoards.parallelStream()
-				.filter(b -> this.isEqualsArray(b.getBoardNumbers(), arrayOrdenado))
+				//.filter(b -> this.isEqualsArray(b.getBoardNumbers(), arrayOrdenado))
+				.filter(b -> this.containsArray(b.getBoardNumbers(), arrayOrdenado))
 				.map(this::createObject)
 				.collect(Collectors.toList());
 
@@ -86,6 +87,18 @@ public class BingoParamBoardServiceImpl implements IBingoParamBoardService {
 		Integer[] objeto1 = Arrays.copyOf(bingo, bingo.length);
 		Arrays.sort(objeto1, Ordering.natural().nullsLast());
 		return Arrays.equals(objeto1, array);
+	}
+	
+	/**
+	 * ordena dos arrays de Integer y los compara <br>
+	 * 
+	 * @author Jonathan Msquera.</a></br>
+	 * @param bingo
+	 * @param array
+	 * @return
+	 */
+	private boolean containsArray(Integer[] bingo, Integer[] array) {
+		return Arrays.asList(bingo).containsAll(Arrays.asList(array));
 	}
 
 }

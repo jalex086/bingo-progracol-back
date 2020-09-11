@@ -52,7 +52,7 @@ public class BingoParamBoardController {
 
 		Map<String, Object> response = new HashMap<>();
 
-		if (numbers.length < 25) {
+		if (numbers.length < 1) {
 			response.put("mensaje", Constants.ERROR_SIZE_ARRAY_404);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
